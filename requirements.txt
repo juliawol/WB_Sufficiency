@@ -1,0 +1,8 @@
+transformers 
+snorkel
+gradio
+pandas
+sentence-transformers
+scikit-learn
+torch
+datasets
