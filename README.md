@@ -20,6 +20,23 @@ This repository contains the implementation of a machine learning pipeline for d
    - The fine-tuned `ruBERT` model achieved the best precision while maintaining acceptable recall.
    - Focal Loss and dynamic class weights were used to address dataset imbalances and improve performance on minority classes.
 
+### **Incorporation of a Vector Database**
+To efficiently manage and query product descriptions during inference, a vector database was integrated into the pipeline:
+
+- **Database Used: ChromaDB**
+ChromaDB was selected for its speed, ease of use, and compatibility with vectorized embeddings.
+- **Description Storage:**
+Each product's description is embedded using the fine-tuned ruBERT model.
+These embeddings, along with product IDs, are stored in the vector database.
+-  **Question Handling:**
+During inference, a user provides a product ID and question.
+The vector database retrieves the relevant description using the product ID.
+The question and description are then passed to the fine-tuned model for classification.
+- **Advantages:**
+Reduces computational overhead by storing precomputed embeddings.
+Enables scalable and efficient retrieval for large datasets.
+
+
 ### **Project Structure**
 
 - **Notebooks**:
@@ -83,7 +100,6 @@ By the 5th this ML-model will be availiable via demo on HuggingFace. The relevan
 
 Этот репозиторий содержит реализацию модели машинного обучения, натренированную определять, содержит ли описание товара достаточно информации, чтобы ответить на вопросы клиентов. Работа включает построение и обучение модели классификации, анализ базового подхода, методов zero-shot и итоговой дообученной модели, оптимизированной для повышения точности (precision).
 
----
 
 ## **Обзор**
 
@@ -102,6 +118,21 @@ By the 5th this ML-model will be availiable via demo on HuggingFace. The relevan
    - Дообученная модель `ruBERT` показала лучшую точность, сохранив при этом приемлемый уровень полноты.
    - Использовались Focal Loss и динамические веса классов для устранения дисбаланса в данных.
 
+### **Интеграция векторной базы данных**
+Для эффективного управления и поиска описаний товаров во время работы модели была внедрена векторная база данных:
+
+- **Используемая база данных: ChromaDB**
+ChromaDB выбрана благодаря её скорости, удобству использования и поддержке работы с векторными эмбеддингами.
+- **Хранение описаний:**
+Описания товаров преобразуются в эмбеддинги с использованием дообученной модели ruBERT.
+Эти эмбеддинги вместе с идентификаторами товаров сохраняются в векторной базе данных.
+- **Обработка вопросов:**
+Пользователь вводит идентификатор товара и вопрос.
+Векторная база данных извлекает соответствующее описание товара.
+Вопрос и описание передаются дообученной модели для классификации.
+- **Преимущества:**
+Снижение вычислительных затрат за счёт использования заранее вычисленных эмбеддингов.
+Масштабируемый и эффективный поиск для больших наборов данных.
 
 ### **Структура проекта**
 
